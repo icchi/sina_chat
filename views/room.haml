@@ -1,0 +1,42 @@
+﻿:javascript
+  function send()
+  {
+  document.formSendMsg.submit();
+  }
+
+.row-fluid
+  .span4
+    .control-group
+      %label ユーザー名:
+      .controls
+        %label{:id => 'userName'} #{@name}
+    .control-group
+      %form{:action => '/'}
+        .controls
+          %input.btn.btn-danger{:type => 'submit', :value => 'ログアウト'}
+
+    %hr
+    %div{:style => 'padding-top:2px'}
+    %form{:name => 'formSendMsg', :method => "POST", :action => '/room'}
+      .control-group
+        %label メッセージ:
+        .controls
+          %input{:type => 'text', :name => 'message'}
+          == <input name='name' type='hidden' value='#{@name}'>
+      .control-group
+        .controls
+          %a.btn.btn-info{:onclick => 'send();return false;'}
+            %i.icon-share-alt.icon-white
+            送信
+
+  .span8
+    %table.table.table-striped
+      %thead
+        %tr
+          %th user
+          %th message
+      %tbody
+        -@@messages.reverse.each do |message|
+          %tr
+            %td=message[0]
+            %td=message[1]

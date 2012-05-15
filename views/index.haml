@@ -1,0 +1,19 @@
+﻿.row-fluid
+  .span4
+    %form{:method => "POST", :action => '/room'}
+      %input{:type => "hidden", :name => "_method", :value => "PUT"}
+      - if @error_msg
+        .control-group.error
+          %label ユーザー名
+          .controls
+            %input{:type => 'text', :name => 'name', :placeholder => 'input your name...'}
+            %span.help-inline #{@error_msg}
+      - else
+        .control-group
+          %label ユーザー名
+          .controls
+            %input{:type => 'text', :name => 'name', :placeholder => 'input your name...'}
+      .control-group
+        .controls
+          %input.btn{:type => 'submit', :value => 'ログイン'}
+  .span8{:style => 'background-color:gainsboro'} ユーザー名を入力してログイン
