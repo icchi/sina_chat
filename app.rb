@@ -47,4 +47,7 @@ def set_message
     @@messages <<  [name, request[:message]]
   end
 
+  # 保管するメッセージは100件
+  @@messages.delete_at(0) while 100 < @@messages.size
+
 end
