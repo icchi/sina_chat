@@ -1,33 +1,53 @@
 ﻿:javascript
-  function send()
-  {
-  document.formSendMsg.submit();
-  }
+
+  $(document).ready(function(){
+
+    $("input").keyup( function () {
+      if($("#textMessage").val() == ""){
+        $("#btnSend").html("<i class='icon-refresh icon-white'></i>&#10;更新");
+      }
+      else{
+        $("#btnSend").html("<i class='icon-share-alt icon-white'></i>&#10;送信");
+      }
+    }); 
+
+    $("#btnSend").click(function(){
+      document.formSendMsg.submit();
+    });
+  });
+
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{:href => '/'}
+        sina_chat
+      .nav-collapse.collapse
+        %ul.nav
+          %li
+            %a{:method => "POST", :href => '/room'}
+              ユーザー名 : #{@name}
+          %li
+            %a{:href => '/'}
+              ログアウト
 
 .row-fluid
   .span4
-    .control-group
-      %label ユーザー名:
-      .controls
-        %label{:id => 'userName'} #{@name}
-    .control-group
-      %form{:action => '/'}
-        .controls
-          %input.btn.btn-danger{:type => 'submit', :value => 'ログアウト'}
-
-    %hr
     %div{:style => 'padding-top:2px'}
     %form{:name => 'formSendMsg', :method => "POST", :action => '/room'}
       .control-group
         %label メッセージ:
         .controls
-          %input{:type => 'text', :name => 'message'}
+          %input{:type => 'text', :id => 'textMessage', :name => 'message'}
           == <input name='name' type='hidden' value='#{@name}'>
       .control-group
         .controls
-          %a.btn.btn-info{:onclick => 'send();return false;'}
-            %i.icon-share-alt.icon-white
-            送信
+          %a.btn.btn-info{:id => 'btnSend', :name => 'btnSendorReload'}
+            %i.icon-refresh.icon-white
+            更新
 
   .span8
     %table.table.table-striped

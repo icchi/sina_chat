@@ -15,7 +15,7 @@ get '/' do
   haml :index
 end
 
-put '/room' do
+get '/room' do
   set_message
   name = request[:name]
 

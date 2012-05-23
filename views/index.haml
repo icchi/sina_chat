@@ -1,7 +1,18 @@
-﻿.row-fluid
+﻿.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{:href => '/'}
+        sina_chat
+      .nav-collapse
+
+.row-fluid
   .span4
-    %form{:method => "POST", :action => '/room'}
-      %input{:type => "hidden", :name => "_method", :value => "PUT"}
+    %form{:method => "GET", :action => '/room'}
+      %input{:type => "hidden", :name => "_method", :value => "GET"}
       - if @error_msg
         .control-group.error
           %label ユーザー名

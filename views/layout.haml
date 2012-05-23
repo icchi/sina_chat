@@ -7,15 +7,13 @@
   %body
     .container-fluid
 
-      #header
-        %h3 sina-chat
+      %script{:src => 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'}
+      %script{:src => 'js/bootstrap.min.js'}
 
-      %div{:style => 'padding-top:20px'}
+      %div{:style => 'padding-top:60px'}
 
-      =yield
+      %body
+        =yield
 
       #footer
         %h3 footer
-
-      %script{:src => 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'}
-      %script{:src => 'js/bootstrap.min.js'}
